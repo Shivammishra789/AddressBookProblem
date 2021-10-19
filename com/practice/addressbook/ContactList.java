@@ -8,7 +8,7 @@ public class ContactList {
 
 	//variables
 	private String firstName, lastName, address, city, state, zip, phoneNo, emailId;
-	
+
 
 	public ContactList() {
 
@@ -109,7 +109,7 @@ public class ContactList {
 		return "ContactList [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city="
 				+ city + ", state=" + state + ", zip=" + zip + ", phoneNo=" + phoneNo + ", emailId=" + emailId + "]";
 	}
-	
+
 
 }
 

@@ -4,46 +4,55 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBookMain {
-
+	
 	Scanner sc = new Scanner(System.in);
 
-	//creating arraylist to create store contact
+	//creating arraylist to store contact
 	ArrayList<ContactList> contactData = new  ArrayList<ContactList>();
-
+	
+	int operation;
+	
 	public static void main(String[] args) {
 		AddressBookMain object = new AddressBookMain();
 		object.addContact();
 	}
-
+	public void contactBuilder() {
+		System.out.println(" to add contact press 1 \n to edit existing contact press 5 \n "
+				+ "to delete existing contact press 9 \n to exit press 0");
+		int operation = sc.nextInt();
+		if(operation == 1) {
+			addContact();
+		}
+		else if(operation == 5) {
+			editContact();
+		}
+		else if(operation == 9) {
+			deleteContact();
+		}
+		else if(operation == 0) {
+			displayContact();
+		}
+		else {			
+			System.out.println("enter valid input");
+			contactBuilder();
+		}
+	}
 	public void addContact() {
 		System.out.println("enter 1 to add new contact");
-		int startAdd = sc.nextInt();
-		if(startAdd == 1) {
-			while(startAdd == 1) {
+		int operation = sc.nextInt();
+		if(operation == 1) {
+			while(operation == 1) {
 				ContactList person = new ContactList();
 				contactData.add(person);							//adding contact to arraylist
-				System.out.println("enter 1 to add more contact or enter 0 to exit");
-				startAdd = sc.nextInt();
-				if(startAdd == 0) {
-					System.out.println("your contact list is updated");
-					System.out.println();
-					break;
-				}		
+				System.out.println("contact added");
+				System.out.println();
+				contactBuilder();
 			}
 		}
 		else {
 			System.out.println("enter valid input");
+			System.out.println();
 			addContact();
-		}
-		System.out.println("to edit existing contact press 5 ");
-		int edit = sc.nextInt();
-		if(edit == 5) {
-			editContact();
-		}
-
-		//displaying contact list
-		for(int i = 0; i < contactData.size(); i++) {
-			System.out.println(contactData.get(i));
 		}
 	}
 	public void editContact() {
@@ -53,20 +62,34 @@ public class AddressBookMain {
 		for(int j = 0 ; j <= contactData.size() ; j++) {
 			if(editName.equalsIgnoreCase(contactData.get(j).getFirstName())) {
 				ContactList newperson = new ContactList();
-				contactData.set(j,newperson);							//editing contact in arraylist
+				contactData.set(j,newperson);						//editing contact in arraylist
 				System.out.println("contact updated");
 				System.out.println();
-				System.out.println("to edit any other contact enter 5 or enter other number to exit");
-				int edit = sc.nextInt();
-				if(edit == 5) {
-					editContact();
-					break;
-				}
-				break;
+				contactBuilder();
 			}
 			System.out.println("entered name not found");
-			break;
+			contactBuilder();
+		}
+	}
+	public void deleteContact() {
+		System.out.println("enter first name to delete that contact");
+		Scanner sc = new Scanner(System.in);
+		String deleteName = sc.nextLine();
+		for(int j = 0 ; j <= contactData.size() ; j++) {
+			if(deleteName.equalsIgnoreCase(contactData.get(j).getFirstName())) {
+				contactData.remove(j);								//deleting contact in arraylist
+				System.out.println("contact deleted successfully");
+				System.out.println();
+				contactBuilder();			
+			}
+			System.out.println("entered name not found");
+			contactBuilder();
+		}
+	}
+	public void displayContact() {
 
+		for(int i = 0; i < contactData.size(); i++) {
+			System.out.println(contactData.get(i));				//displaying contact list
 		}
 	}
 }
