@@ -109,7 +109,5 @@ public class ContactList {
 		return "ContactList [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city="
 				+ city + ", state=" + state + ", zip=" + zip + ", phoneNo=" + phoneNo + ", emailId=" + emailId + "]";
 	}
-
-
 }
 
