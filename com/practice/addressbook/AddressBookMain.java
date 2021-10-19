@@ -4,37 +4,44 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBookMain {
-	
+
 	Scanner sc = new Scanner(System.in);
 
 	//creating arraylist to store contact
 	ArrayList<ContactList> contactData = new  ArrayList<ContactList>();
-	
+
 	int operation;
-	
+
 	public static void main(String[] args) {
 		AddressBookMain object = new AddressBookMain();
 		object.addContact();
 	}
-	public void contactBuilder() {
+	public void contactBuilder() {								//method to do task multiple times
 		System.out.println(" to add contact press 1 \n to edit existing contact press 5 \n "
 				+ "to delete existing contact press 9 \n to exit press 0");
 		int operation = sc.nextInt();
-		if(operation == 1) {
+		switch(operation){
+
+		case 1: {
 			addContact();
 		}
-		else if(operation == 5) {
+		break;
+		case 5: {
 			editContact();
-		}
-		else if(operation == 9) {
+		} 
+		break;        
+		case 9: {
 			deleteContact();
-		}
-		else if(operation == 0) {
+		} 
+		break;
+		case 0: {
 			displayContact();
-		}
-		else {			
+		} 
+		break;
+		default: {			
 			System.out.println("enter valid input");
 			contactBuilder();
+		}       
 		}
 	}
 	public void addContact() {
