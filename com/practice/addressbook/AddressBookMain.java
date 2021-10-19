@@ -1,14 +1,46 @@
 package com.practice.addressbook;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class AddressBookMain {
 
 	public static void main(String[] args) {
+		addContact();										//calling method in main
+	}
 
-		ContactList person1 = new ContactList("Shivam", "Mishra", "Lane no 24", "Pune", "Maharashtra",
-				"411039", "8830466378", "Shivammishra7789@gmail.com");
-		ContactList person2 = new ContactList("Rahul", "Krishna", "No.2,AK street, 3rd Cross", "XXY city", "MMN state",
-				"660666", "9194979295", "rahulkrisna@gmail.com");
-		System.out.println(person1.toString());
-		System.out.println(person2.toString());
+	public static void addContact() {
+
+		Scanner sc = new Scanner(System.in);
+
+		//creating arraylist to create store contact
+		ArrayList<ContactList> contactData = new  ArrayList<ContactList>();
+
+		System.out.println("enter 1 to add new contact");
+		int startAdd = sc.nextInt();
+
+		if(startAdd == 1) {
+			while(startAdd == 1) {
+				ContactList person = new ContactList();
+				contactData.add(person);					//adding contact to arraylist
+				System.out.println("enter 1 to add more contact or enter 0 to exit");
+				startAdd = sc.nextInt();
+				if(startAdd == 0) {
+					System.out.println("your contact list is updated");
+					System.out.println();
+					break;
+				}		
+			}
+		}
+		else {
+			System.out.println("enter valid input");
+			addContact();
+		}
+
+		//displaying contact list
+		for(int i = 0; i < contactData.size(); i++) {
+			System.out.println(contactData.get(i));
+		}
 	}
 }
+
